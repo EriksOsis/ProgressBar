@@ -1,25 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import {ProgressBar} from "./components/PorgressBar/ProgressBar";
+import {Button} from "./components/Button/Button";
+import {useState} from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [progress, setProgress] = useState(1);
+
+    function progressHandler() {
+        setProgress(progress + 1);
+    }
+
+    const steps = ["Shipping", "Billing & Review", "Success"];
+
+    return (
+        <div className="App">
+            <ProgressBar progress={progress} steps={steps}/>
+            <Button submitHandler={progressHandler}/>
+        </div>
+    );
 }
 
 export default App;
